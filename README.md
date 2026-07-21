@@ -34,3 +34,30 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Running with Docker
+
+Kamu bisa menjalankan aplikasi ini menggunakan Docker secara mudah.
+
+### Menggunakan Docker Compose (Direkomendasikan)
+
+1. Pastikan Docker Desktop sudah terinstal dan berjalan.
+2. Jalankan perintah berikut untuk mem-build dan menjalankan container:
+
+```bash
+docker compose up --build
+```
+
+3. Buka [http://localhost:3000](http://localhost:3000) di browser Anda.
+
+### Menggunakan Docker CLI secara Manual
+
+1. Build docker image:
+```bash
+docker build -t nextjs-porto .
+```
+
+2. Jalankan container:
+```bash
+docker run -p 3000:3000 nextjs-porto
+```
