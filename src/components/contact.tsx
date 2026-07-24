@@ -100,19 +100,19 @@ export default function Contact() {
       if (data.success) {
         setStatus({
           type: "success",
-          message: "Pesan Anda berhasil dikirim ke Gmail Carina! Terima kasih sudah menghubungi.",
+          message: "Your message has been successfully sent to Carina's Gmail! Thank you for reaching out.",
         })
         setFormData({ name: "", email: "", subject: "", message: "" })
       } else {
         setStatus({
           type: "error",
-          message: data.error || "Gagal mengirim pesan. Silakan coba lagi.",
+          message: data.error || "Failed to send message. Please try again.",
         })
       }
     } catch (error) {
       setStatus({
         type: "error",
-        message: "Terjadi kesalahan koneksi. Silakan coba beberapa saat lagi.",
+        message: "A connection error occurred. Please try again in a few moments.",
       })
     } finally {
       setIsSubmitting(false)

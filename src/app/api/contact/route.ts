@@ -6,7 +6,7 @@ export async function POST(req: Request) {
 
     if (!name || !email || !message) {
       return NextResponse.json(
-        { success: false, error: "Mohon lengkapi Nama, Email, dan Pesan Anda." },
+        { success: false, error: "Please fill in your Name, Email, and Message." },
         { status: 400 }
       )
     }
@@ -26,15 +26,15 @@ export async function POST(req: Request) {
           from: "Portfolio Contact <onboarding@resend.dev>",
           to: ["carinahakam@gmail.com"],
           reply_to: email,
-          subject: subject ? `[Portofolio] ${subject}` : `[Portofolio] Pesan Baru dari ${name}`,
+          subject: subject ? `[Portfolio] ${subject}` : `[Portfolio] New Message from ${name}`,
           html: `
             <div style="font-family: Arial, sans-serif; padding: 20px; color: #333; max-width: 600px; border: 1px solid #e0e0e0; border-radius: 12px;">
-              <h2 style="color: #004ac6; margin-top: 0;">Pesan Baru dari Web Portofolio</h2>
-              <p><strong>Nama:</strong> ${name}</p>
-              <p><strong>Email Pengirim:</strong> <a href="mailto:${email}">${email}</a></p>
-              <p><strong>Subjek:</strong> ${subject || '-'}</p>
+              <h2 style="color: #004ac6; margin-top: 0;">New Message from Portfolio Web</h2>
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Sender Email:</strong> <a href="mailto:${email}">${email}</a></p>
+              <p><strong>Subject:</strong> ${subject || '-'}</p>
               <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
-              <p><strong>Pesan:</strong></p>
+              <p><strong>Message:</strong></p>
               <div style="background: #f7f9fb; padding: 15px; border-radius: 8px; white-space: pre-line; line-height: 1.6;">${message}</div>
             </div>
           `,
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
       })
 
       if (resendRes.ok) {
-        return NextResponse.json({ success: true, message: "Pesan berhasil dikirim ke Gmail!" })
+        return NextResponse.json({ success: true, message: "Your message has been successfully sent to Carina's Gmail!" })
       }
     }
 
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
         body: JSON.stringify({ name, email, subject, message }),
       })
       if (fsRes.ok) {
-        return NextResponse.json({ success: true, message: "Pesan berhasil dikirim ke Gmail!" })
+        return NextResponse.json({ success: true, message: "Your message has been successfully sent to Carina's Gmail!" })
       }
     }
 
@@ -66,22 +66,22 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         name,
         email,
-        subject: subject || `[Portofolio] Pesan dari ${name}`,
+        subject: subject || `[Portfolio] Message from ${name}`,
         message,
       }),
     })
 
     if (fallbackRes.ok) {
-      return NextResponse.json({ success: true, message: "Pesan berhasil dikirim!" })
+      return NextResponse.json({ success: true, message: "Your message has been successfully sent!" })
     }
 
     return NextResponse.json({
       success: true,
-      message: "Pesan Anda berhasil diterima!",
+      message: "Your message has been received!",
     })
   } catch (error: any) {
     return NextResponse.json(
-      { success: false, error: "Gagal mengirim pesan. Silakan coba lagi atau gunakan kontak WhatsApp/Email langsung." },
+      { success: false, error: "Failed to send message. Please try again or use direct WhatsApp/Email." },
       { status: 500 }
     )
   }
