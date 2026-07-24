@@ -189,6 +189,9 @@ export default function Projects() {
             const isTruncated = !dbLongDesc || dbLongDesc.trim().endsWith('...') || dbLongDesc.trim().endsWith('…')
             const finalLongDesc = (isTruncated && defaultMatch?.longDescription) ? defaultMatch.longDescription : (dbLongDesc || item.description || defaultMatch?.longDescription || '')
 
+            const isSmartAssist = normalizeTitle(item.title).includes("smartassist") || (defaultMatch && normalizeTitle(defaultMatch.title).includes("smartassist"))
+            const githubLink = isSmartAssist ? undefined : (item.github_url || defaultMatch?.github)
+
             return {
               title: item.title,
               subtitle: item.subtitle || defaultMatch?.subtitle || '',
@@ -199,7 +202,7 @@ export default function Projects() {
               features: item.features || defaultMatch?.features || [],
               tags: item.tags || defaultMatch?.tags || [],
               image: item.image_url || defaultMatch?.image || '',
-              github: item.github_url || defaultMatch?.github,
+              github: githubLink,
               demo: item.demo_url || defaultMatch?.demo,
             }
           })

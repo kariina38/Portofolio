@@ -12,6 +12,8 @@ export default function Navbar() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
 
+  const [activeSection, setActiveSection] = React.useState("")
+
   // Avoid hydration mismatch by waiting for mount
   React.useEffect(() => {
     setMounted(true)
@@ -23,14 +25,33 @@ export default function Navbar() {
       }
     }
     window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+
+    // Scrollspy to track active section
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: "-30% 0px -50% 0px" }
+    )
+
+    const sections = document.querySelectorAll("section[id]")
+    sections.forEach((sec) => observer.observe(sec))
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      observer.disconnect()
+    }
   }, [])
 
   const navLinks = [
-    { label: "Stack", href: "#stack" },
-    { label: "Projects", href: "#projects" },
-    { label: "Experience", href: "#experience" },
-    { label: "Contact", href: "#contact" },
+    { label: "Stack", href: "#stack", id: "stack" },
+    { label: "Projects", href: "#projects", id: "projects" },
+    { label: "Experience", href: "#experience", id: "experience" },
+    { label: "Contact", href: "#contact", id: "contact" },
   ]
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -38,7 +59,7 @@ export default function Navbar() {
     setIsOpen(false)
     
     const isMobile = typeof window !== "undefined" && window.innerWidth < 768
-    const delay = isMobile ? 300 : 0
+    const delay = isMobile ? 250 : 0
     
     setTimeout(() => {
       if (href === "#" || href === "body" || href === "#home") {
@@ -71,24 +92,33 @@ export default function Navbar() {
         <a
           href="#"
           onClick={(e) => handleLinkClick(e, "body")}
-          className="font-display-xl text-xl md:text-2xl font-extrabold tracking-tighter text-foreground"
+          className="font-display-xl text-xl md:text-2xl font-extrabold tracking-tighter text-foreground hover:opacity-80 transition-opacity"
         >
           Ajeng M. Carina
         </a>
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center gap-6 font-semibold text-sm text-muted-foreground">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => handleLinkClick(e, link.href)}
-              className="hover:text-primary transition-all duration-300 relative group py-1"
-            >
-              {link.label}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleLinkClick(e, link.href)}
+                className={`transition-all duration-300 relative group py-1 ${
+                  isActive ? "text-primary font-bold" : "hover:text-primary"
+                }`}
+              >
+                {link.label}
+                <span
+                  className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </a>
+            )
+          })}
         </div>
 
         {/* Desktop Buttons & Theme Toggle */}
