@@ -276,7 +276,7 @@ export default function Projects() {
   } as const
 
   return (
-    <section className="pt-6 md:pt-8 pb-16 md:pb-20 section-gradient-projects section-blend-projects w-full relative scroll-mt-16 md:scroll-mt-20" id="projects">
+    <section className="pt-2 md:pt-3 pb-16 md:pb-20 section-gradient-projects section-blend-projects w-full relative scroll-mt-12 md:scroll-mt-14" id="projects">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">

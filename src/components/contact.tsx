@@ -120,7 +120,7 @@ export default function Contact() {
   }
 
   return (
-    <section className="pt-6 md:pt-8 pb-16 md:pb-20 mb-0 section-gradient-contact section-blend-contact w-full scroll-mt-16 md:scroll-mt-20" id="contact">
+    <section className="pt-2 md:pt-3 pb-16 md:pb-20 mb-0 section-gradient-contact section-blend-contact w-full scroll-mt-12 md:scroll-mt-14" id="contact">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="glass border border-outline-variant/30 rounded-3xl p-6 sm:p-10 md:p-12 relative overflow-hidden shadow-xl bg-card/40 dark:bg-card/25 max-w-4xl mx-auto">
           {/* Background Glow */}
