@@ -63,7 +63,7 @@ export default function Footer() {
           className="text-muted-foreground/60 text-sm font-medium mt-4 md:mt-0 text-center"
           variants={itemVariants}
         >
-          © {new Date().getFullYear()} AI/Full-Stack Architect. Crafted with Precision.
+          © {new Date().getFullYear()} AI/Full-Stack Architect.
         </motion.div>
       </motion.div>
     </footer>
