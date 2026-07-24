@@ -70,9 +70,13 @@ export default function TechStack() {
                 "Machine Learning",
                 "Deep Learning",
                 "Computer Vision",
-                "YOLO",
+                "YOLOv11",
                 "Roboflow",
                 "NLP",
+                "OpenAI Whisper",
+                "Hugging Face",
+                "RAG",
+                "Generative AI",
                 "ChromaDB",
               ].map((tech) => (
                 <span
@@ -107,6 +111,7 @@ export default function TechStack() {
                 "Python",
                 "JavaScript",
                 "TypeScript",
+                "PHP",
                 "Java",
                 "C++",
                 "Dart",
@@ -135,14 +140,14 @@ export default function TechStack() {
                 <Monitor className="h-6 w-6" />
               </div>
               <h3 className="font-bold text-base md:text-lg text-foreground mb-2">
-                Frontend
+                Frontend & AI Interfaces
               </h3>
               <p className="text-on-surface-variant text-xs leading-relaxed mb-4 text-justify">
-                Building responsive, accessible, and modern user interfaces.
+                Building responsive, accessible, and modern user interfaces & AI web apps.
               </p>
             </div>
             <div className="flex flex-wrap gap-1.5 mt-auto">
-              {["React", "Next.js", "Vite", "Tailwind CSS", "Flutter"].map((tech) => (
+              {["React", "Next.js", "Vite", "Tailwind CSS", "Streamlit", "Gradio", "Flutter"].map((tech) => (
                 <span
                   key={tech}
                   className="px-2.5 py-1 bg-secondary/5 dark:bg-secondary/15 text-secondary border border-secondary/10 dark:border-secondary/25 rounded-full text-[11px] font-bold"
@@ -172,12 +177,15 @@ export default function TechStack() {
             </div>
             <div className="flex flex-wrap gap-2 mt-auto">
               {[
-                "Flask",
+                "Node.js",
+                "Express.js",
                 "Supabase",
                 "PostgreSQL",
+                "SQLite",
+                "MySQL",
+                "Flask",
                 "REST API",
-                "JWT Authentication",
-                "RBAC",
+                "JWT & 2FA",
               ].map((tech) => (
                 <span
                   key={tech}
@@ -200,14 +208,14 @@ export default function TechStack() {
                 <Terminal className="h-6 w-6" />
               </div>
               <h3 className="font-bold text-base md:text-lg text-foreground mb-2">
-                Tools
+                Tools & Environments
               </h3>
               <p className="text-on-surface-variant text-xs leading-relaxed mb-4 text-justify">
-                Streamlining development, versioning, debugging, and UI design.
+                Streamlining development, AI training, versioning, and deployment.
               </p>
             </div>
             <div className="flex flex-wrap gap-1.5 mt-auto">
-              {["Git", "GitHub", "Docker", "Postman", "Figma"].map((tech) => (
+              {["Git", "GitHub", "Docker", "Google Colab", "Postman", "Figma", "Nginx"].map((tech) => (
                 <span
                   key={tech}
                   className="px-2.5 py-1 bg-tertiary/5 dark:bg-tertiary/15 text-tertiary border border-tertiary/10 dark:border-tertiary/25 rounded-full text-[11px] font-bold"

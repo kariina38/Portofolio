@@ -48,27 +48,6 @@ export default function Experience() {
       description: "Coordinated event operations and logistics with 130 committee members across 15 divisions, contributing to the successful execution of a technology event attended by over 1,000 participants.",
       color: "border-tertiary text-tertiary",
     },
-    {
-      role: "Liaison Officer (LO)",
-      organization: "President University – Dies Natalis 2025",
-      period: "Apr 2025 – Oct 2025",
-      description: "Supported the planning and execution of President University's Dies Natalis by coordinating event operations, managing performer logistics, and assisting senior high school outreach to ensure a successful event.",
-      color: "border-primary text-primary",
-    },
-    {
-      role: "Education Facilitator",
-      organization: "Recreo Project – President University",
-      period: "Jun 2025 – Jul 2025",
-      description: "Developed an educational website and facilitated environmental learning sessions for elementary students through recycling activities and interactive Kahoot games to promote sustainability awareness.",
-      color: "border-secondary text-secondary",
-    },
-    {
-      role: "Academic Division Member",
-      organization: "President University Robotics Technology Club (PURTC)",
-      period: "Jan 2025 – Aug 2025",
-      description: "Organized robotics and IoT workshops for senior high school students while mentoring participants in assembling and programming an Arduino Uno-based crane project.",
-      color: "border-tertiary text-tertiary",
-    },
   ]
 
   return (

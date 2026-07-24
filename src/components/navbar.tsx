@@ -27,7 +27,6 @@ export default function Navbar() {
   }, [])
 
   const navLinks = [
-    { label: "About", href: "#about" },
     { label: "Stack", href: "#stack" },
     { label: "Projects", href: "#projects" },
     { label: "Experience", href: "#experience" },
@@ -109,7 +108,7 @@ export default function Navbar() {
             href="#"
             className="text-primary font-semibold text-sm hover:opacity-80 transition-opacity"
           >
-            Resume
+            CV
           </a>
 
         </div>
@@ -175,7 +174,7 @@ export default function Navbar() {
               className="text-lg font-bold text-primary hover:opacity-80 transition-opacity w-full text-center py-1"
               onClick={() => setIsOpen(false)}
             >
-              Resume
+              CV
             </motion.a>
           </motion.div>
         )}

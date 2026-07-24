@@ -43,7 +43,7 @@ export default function Hero() {
               <ArrowRight className="h-4 w-4" />
             </button>
             <button className="border-2 border-outline px-6 py-3 rounded-2xl font-bold text-sm hover:bg-surface-container-low transition-all duration-300 flex items-center gap-2 text-foreground w-full sm:w-auto justify-center cursor-pointer">
-              Download Resume
+              Download CV
               <Download className="h-4 w-4" />
             </button>
           </div>
