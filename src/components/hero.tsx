@@ -50,10 +50,16 @@ export default function Hero() {
               View My Projects
               <ArrowRight className="h-4 w-4" />
             </button>
-            <button className="border-2 border-outline px-6 py-3 rounded-2xl font-bold text-sm hover:bg-surface-container-low transition-all duration-300 flex items-center gap-2 text-foreground w-full sm:w-auto justify-center cursor-pointer">
+            <a
+              href="/cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download="CV_Ajeng_Miftahul_Carina.pdf"
+              className="border-2 border-outline px-6 py-3 rounded-2xl font-bold text-sm hover:bg-surface-container-low transition-all duration-300 flex items-center gap-2 text-foreground w-full sm:w-auto justify-center cursor-pointer"
+            >
               Download CV
               <Download className="h-4 w-4" />
-            </button>
+            </a>
           </div>
         </motion.div>
 

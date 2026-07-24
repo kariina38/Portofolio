@@ -135,7 +135,9 @@ export default function Navbar() {
             </Button>
           )}
           <a
-            href="#"
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-primary font-semibold text-sm hover:opacity-80 transition-opacity"
           >
             CV
@@ -200,7 +202,9 @@ export default function Navbar() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: navLinks.length * 0.05 + 0.05 }}
-              href="#"
+              href="/cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-lg font-bold text-primary hover:opacity-80 transition-opacity w-full text-center py-1"
               onClick={() => setIsOpen(false)}
             >
