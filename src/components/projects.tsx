@@ -160,7 +160,7 @@ const defaultProjects: Project[] = [
     ],
     tags: ["Python", "Natural Language Processing", "Whisper", "Hugging Face", "Streamlit", "RAG", "Generative AI", "Groq API", "Gemini API", "BART", "PEGASUS"],
     image: "/projects/smartassist.jpg",
-    github: "https://github.com/RainW1/NLP-FInal-Project-Chatbot-CS",
+    github: undefined,
     demo: undefined,
   },
 ]
@@ -273,7 +273,7 @@ export default function Projects() {
   } as const
 
   return (
-    <section className="py-16 md:py-20 section-gradient-projects section-blend-projects w-full relative" id="projects">
+    <section className="py-16 md:py-20 section-gradient-projects section-blend-projects w-full relative scroll-mt-20" id="projects">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">

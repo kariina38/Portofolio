@@ -66,7 +66,7 @@ const PhoneIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export default function Contact() {
   return (
-    <section className="py-16 md:py-20 mb-0 section-gradient-contact section-blend-contact w-full" id="contact">
+    <section className="py-16 md:py-20 mb-0 section-gradient-contact section-blend-contact w-full scroll-mt-20" id="contact">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="glass border border-outline-variant/30 rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-xl bg-card/40 dark:bg-card/25 max-w-3xl mx-auto text-center">
           {/* Background Glow */}

@@ -28,7 +28,7 @@ export default function TechStack() {
   } as const
 
   return (
-    <section className="py-16 md:py-20 section-gradient-stack section-blend-stack w-full" id="stack">
+    <section className="py-16 md:py-20 section-gradient-stack section-blend-stack w-full scroll-mt-20" id="stack">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         {/* Section Header */}
         <div className="text-center mb-16">

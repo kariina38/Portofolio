@@ -134,7 +134,7 @@ const projectsData = [
     ],
     tags: ["Python", "Natural Language Processing", "Whisper", "Hugging Face", "Streamlit", "RAG", "Generative AI", "Groq API", "Gemini API", "BART", "PEGASUS"],
     image_url: "/projects/smartassist.jpg",
-    github_url: "https://github.com/RainW1/NLP-FInal-Project-Chatbot-CS",
+    github_url: null,
     demo_url: null
   }
 ]

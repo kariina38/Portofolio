@@ -9,13 +9,21 @@ export default function Hero() {
   const handleScrollToProjects = () => {
     const element = document.querySelector("#projects")
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768
+      const navbarOffset = isMobile ? 64 : 76
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.scrollY - navbarOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      })
     }
   }
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden section-gradient-hero w-full" id="home">
-      <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-20 pb-16 w-full relative z-10">
+    <section className="relative min-h-[calc(100vh-80px)] lg:h-[calc(100vh-80px)] lg:min-h-[680px] flex items-center overflow-hidden section-gradient-hero w-full scroll-mt-20" id="home">
+      <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-24 pb-12 lg:py-0 w-full relative z-10">
         {/* Background Accents */}
         <div className="glow-spot bg-primary -top-20 -left-20" />
         <div className="glow-spot bg-secondary -bottom-20 -right-20" />
