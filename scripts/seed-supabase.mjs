@@ -75,7 +75,7 @@ const projectsData = [
     tags: ["React", "Vite", "JavaScript", "Tailwind CSS", "Supabase", "PostgreSQL"],
     image_url: "/projects/foodlink.jpeg",
     github_url: "https://github.com/Pusri27/FoodLink",
-    demo_url: null
+    demo_url: "https://food-link-web.vercel.app/"
   },
   {
     title: "Tech Museum",
@@ -115,7 +115,7 @@ const projectsData = [
     tags: ["Python", "YOLOv11", "Computer Vision", "Deep Learning", "Roboflow", "Google Colab", "Gradio", "OpenCV", "NumPy", "Matplotlib"],
     image_url: "/projects/indoorvision.jpg",
     github_url: null,
-    demo_url: null
+    demo_url: "https://colab.research.google.com/drive/13Amn1TB0_SB1NU-MghXcyawqbU7BSzyP?usp=sharing"
   },
   {
     title: "SmartAssist – Hybrid E-Commerce Customer Service Chatbot",

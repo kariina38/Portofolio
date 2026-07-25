@@ -100,7 +100,7 @@ export default function Contact() {
       if (data.success) {
         setStatus({
           type: "success",
-          message: "Your message has been successfully sent to Carina's Gmail! Thank you for reaching out.",
+          message: "Your message has been successfully sent! Thank you for reaching out.",
         })
         setFormData({ name: "", email: "", subject: "", message: "" })
       } else {
@@ -120,7 +120,7 @@ export default function Contact() {
   }
 
   return (
-    <section className="pt-2 md:pt-3 pb-16 md:pb-20 mb-0 section-gradient-contact section-blend-contact w-full scroll-mt-12 md:scroll-mt-14" id="contact">
+    <section className="pt-2 md:pt-3 pb-16 md:pb-20 mb-0 section-gradient-contact section-blend-contact w-full scroll-mt-[180px] md:scroll-mt-[200px]" id="contact">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="glass border border-outline-variant/30 rounded-3xl p-6 sm:p-10 md:p-12 relative overflow-hidden shadow-xl bg-card/40 dark:bg-card/25 max-w-4xl mx-auto">
           {/* Background Glow */}
@@ -176,7 +176,7 @@ export default function Contact() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="e.g. John Doe"
+                      placeholder="e.g. Ajeng Miftahul Carina"
                       className="w-full px-4 py-2.5 bg-background border border-outline-variant/40 rounded-xl text-sm font-medium text-foreground focus:outline-none focus:border-primary transition-all"
                     />
                   </div>
@@ -190,7 +190,7 @@ export default function Contact() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="e.g. john@example.com"
+                      placeholder="e.g. carinahakam@gmail.com"
                       className="w-full px-4 py-2.5 bg-background border border-outline-variant/40 rounded-xl text-sm font-medium text-foreground focus:outline-none focus:border-primary transition-all"
                     />
                   </div>
@@ -267,7 +267,7 @@ export default function Contact() {
 
               {/* Phone / WA */}
               <a
-                href="https://wa.me/6285287824322"
+                href="https://wa.me/6281617994982"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3.5 p-3.5 bg-card/60 dark:bg-card/40 rounded-2xl border border-outline-variant/30 text-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 group/item"
@@ -277,7 +277,7 @@ export default function Contact() {
                 </div>
                 <div className="text-left">
                   <div className="text-[10px] font-bold text-muted-foreground tracking-widest uppercase">WhatsApp</div>
-                  <span className="font-semibold text-xs">+62 852-8782-4322</span>
+                  <span className="font-semibold text-xs">(+62) 81617994982</span>
                 </div>
               </a>
 

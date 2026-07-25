@@ -68,9 +68,10 @@ export default function Navbar() {
       }
       const element = document.querySelector(href)
       if (element) {
-        const navbarOffset = isMobile ? 56 : 60
-        const elementPosition = element.getBoundingClientRect().top
-        const offsetPosition = elementPosition + window.scrollY - navbarOffset
+        const container = element.querySelector(".max-w-container-max") || element
+        const navbarOffset = isMobile ? 68 : 84
+        const targetPosition = container.getBoundingClientRect().top
+        const offsetPosition = targetPosition + window.scrollY - navbarOffset
 
         window.scrollTo({
           top: offsetPosition,

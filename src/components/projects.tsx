@@ -101,7 +101,7 @@ const defaultProjects: Project[] = [
     tags: ["React", "Vite", "JavaScript", "Tailwind CSS", "Supabase", "PostgreSQL"],
     image: "/projects/foodlink.jpeg",
     github: "https://github.com/Pusri27/FoodLink",
-    demo: undefined,
+    demo: "https://food-link-web.vercel.app/",
   },
   {
     title: "Tech Museum",
@@ -141,7 +141,7 @@ const defaultProjects: Project[] = [
     tags: ["Python", "YOLOv11", "Computer Vision", "Deep Learning", "Roboflow", "Google Colab", "Gradio", "OpenCV", "NumPy", "Matplotlib"],
     image: "/projects/indoorvision.jpg",
     github: undefined,
-    demo: undefined,
+    demo: "https://colab.research.google.com/drive/13Amn1TB0_SB1NU-MghXcyawqbU7BSzyP?usp=sharing",
   },
   {
     title: "SmartAssist – Hybrid E-Commerce Customer Service Chatbot",
@@ -180,57 +180,64 @@ export default function Projects() {
       try {
         const supabase = createClient()
         const { data, error } = await supabase.from('projects').select('*').order('created_at', { ascending: false })
-        if (data && data.length > 0) {
-          const mapped: Project[] = data.map((item: any) => {
-            const defaultMatch = defaultProjects.find(
-              (p) => normalizeTitle(p.title).includes(normalizeTitle(item.title)) || normalizeTitle(item.title).includes(normalizeTitle(p.title))
-            )
-            const dbLongDesc = item.long_description || ''
-            const isTruncated = !dbLongDesc || dbLongDesc.trim().endsWith('...') || dbLongDesc.trim().endsWith('…')
-            const finalLongDesc = (isTruncated && defaultMatch?.longDescription) ? defaultMatch.longDescription : (dbLongDesc || item.description || defaultMatch?.longDescription || '')
+        if (data && data.length > 0 && !error) {
+          const updatedList = defaultProjects.map((dp) => {
+            const normDp = normalizeTitle(dp.title)
+            const dbItem = data.find((item: any) => {
+              const normItem = normalizeTitle(item.title || "")
+              return normDp.includes(normItem) || normItem.includes(normDp)
+            })
 
-            const isSmartAssist = normalizeTitle(item.title).includes("smartassist") || (defaultMatch && normalizeTitle(defaultMatch.title).includes("smartassist"))
-            const githubLink = isSmartAssist ? undefined : (item.github_url || defaultMatch?.github)
+            if (!dbItem) return dp
+
+            const dbLongDesc = dbItem.long_description || ""
+            const isTruncated = !dbLongDesc || dbLongDesc.trim().endsWith("...") || dbLongDesc.trim().endsWith("…")
+            const finalLongDesc = isTruncated ? dp.longDescription : (dbLongDesc || dp.longDescription)
+
+            const isSmartAssist = normDp.includes("smartassist") || normalizeTitle(dbItem.title || "").includes("smartassist")
+            const githubLink = isSmartAssist ? undefined : (dbItem.github_url || dp.github)
 
             return {
-              title: item.title,
-              subtitle: item.subtitle || defaultMatch?.subtitle || '',
-              description: item.description || defaultMatch?.description || '',
+              ...dp,
+              title: dbItem.title || dp.title,
+              subtitle: dbItem.subtitle || dp.subtitle,
+              description: dbItem.description || dp.description,
               longDescription: finalLongDesc,
-              role: item.role || defaultMatch?.role || '',
-              timeline: item.timeline || defaultMatch?.timeline || '',
-              features: item.features || defaultMatch?.features || [],
-              tags: item.tags || defaultMatch?.tags || [],
-              image: item.image_url || defaultMatch?.image || '',
+              role: dbItem.role || dp.role,
+              timeline: dbItem.timeline || dp.timeline,
+              features: (dbItem.features && dbItem.features.length > 0) ? dbItem.features : dp.features,
+              tags: (dbItem.tags && dbItem.tags.length > 0) ? dbItem.tags : dp.tags,
+              image: dbItem.image_url || dp.image,
               github: githubLink,
-              demo: item.demo_url || defaultMatch?.demo,
+              demo: dbItem.demo_url || dp.demo,
             }
           })
 
-          // Strict deduplication by normalized title
-          const seen = new Set<string>()
-          const combined: Project[] = []
+          for (const dbItem of data) {
+            const normItem = normalizeTitle(dbItem.title || "")
+            const isAlreadyIncluded = updatedList.some((p) => {
+              const normP = normalizeTitle(p.title)
+              return normP.includes(normItem) || normItem.includes(normP)
+            })
 
-          for (const proj of mapped) {
-            const norm = normalizeTitle(proj.title)
-            if (norm && !seen.has(norm)) {
-              seen.add(norm)
-              combined.push(proj)
+            if (!isAlreadyIncluded && dbItem.title) {
+              updatedList.push({
+                title: dbItem.title,
+                subtitle: dbItem.subtitle || "AI & Software Development",
+                description: dbItem.description || "",
+                longDescription: dbItem.long_description || dbItem.description || "",
+                role: dbItem.role || "Developer",
+                timeline: dbItem.timeline || "2026",
+                features: dbItem.features || [],
+                tags: dbItem.tags || [],
+                image: dbItem.image_url || "/projects/perfint.png",
+                github: dbItem.github_url || undefined,
+                demo: dbItem.demo_url || undefined,
+              })
             }
           }
 
-          for (const dp of defaultProjects) {
-            const norm = normalizeTitle(dp.title)
-            const isAlreadyAdded = Array.from(seen).some(
-              (s) => s.includes(norm) || norm.includes(s)
-            )
-            if (!isAlreadyAdded) {
-              seen.add(norm)
-              combined.push(dp)
-            }
-          }
-
-          setProjectsList(combined)
+          setProjectsList(updatedList)
         }
       } catch (e) {
         // Fallback to defaultProjects on connection issue
@@ -276,7 +283,7 @@ export default function Projects() {
   } as const
 
   return (
-    <section className="pt-2 md:pt-3 pb-16 md:pb-20 section-gradient-projects section-blend-projects w-full relative scroll-mt-12 md:scroll-mt-14" id="projects">
+    <section className="pt-2 md:pt-3 pb-16 md:pb-20 section-gradient-projects section-blend-projects w-full relative scroll-mt-[180px] md:scroll-mt-[200px]" id="projects">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -358,16 +365,17 @@ export default function Projects() {
                 </div>
 
                 {/* Action Links & Detail Button */}
-                <div className="flex items-center justify-between pt-4 border-t border-outline-variant/20">
-                  <div className="flex items-center gap-3">
+                <div className="flex items-center justify-between pt-4 border-t border-outline-variant/20 relative z-20">
+                  <div className="flex items-center gap-2 relative z-20">
                     {project.github && (
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 text-xs font-bold text-on-surface-variant hover:text-primary transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                        className="px-3 py-1.5 bg-secondary hover:bg-secondary/80 text-secondary-foreground rounded-xl font-bold text-xs flex items-center gap-1.5 transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer relative z-20"
                       >
-                        <GithubIcon className="h-4 w-4" />
+                        <GithubIcon className="h-3.5 w-3.5" />
                         Code
                       </a>
                     )}
@@ -376,17 +384,21 @@ export default function Projects() {
                         href={project.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 text-xs font-bold text-primary hover:opacity-80 transition-opacity"
+                        onClick={(e) => e.stopPropagation()}
+                        className="px-3 py-1.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-bold text-xs flex items-center gap-1.5 transition-all shadow-md hover:scale-105 active:scale-95 cursor-pointer relative z-20"
                       >
-                        <ExternalLink className="h-4 w-4" />
-                        Demo
+                        <ExternalLink className="h-3.5 w-3.5" />
+                        {project.demo.includes("colab") ? "Google Colab" : "Demo"}
                       </a>
                     )}
                   </div>
 
                   <button
-                    onClick={() => setSelectedProject(project)}
-                    className="flex items-center gap-1.5 text-xs font-bold text-primary hover:underline cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setSelectedProject(project)
+                    }}
+                    className="px-2.5 py-1.5 text-xs font-bold text-primary hover:underline cursor-pointer relative z-20 flex items-center gap-1"
                   >
                     <Info className="w-3.5 h-3.5" />
                     Details
@@ -518,7 +530,7 @@ export default function Projects() {
                         className="px-3.5 py-1.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-bold text-xs flex items-center gap-1.5 transition-all shadow-md"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
-                        Live Demo
+                        {selectedProject.demo.includes("colab") ? "Google Colab" : "Live Demo"}
                       </a>
                     )}
                   </div>

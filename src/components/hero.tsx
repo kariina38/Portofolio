@@ -10,9 +10,10 @@ export default function Hero() {
     const element = document.querySelector("#projects")
     if (element) {
       const isMobile = typeof window !== "undefined" && window.innerWidth < 768
-      const navbarOffset = isMobile ? 64 : 76
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.scrollY - navbarOffset
+      const container = element.querySelector(".max-w-container-max") || element
+      const navbarOffset = isMobile ? 68 : 84
+      const targetPosition = container.getBoundingClientRect().top
+      const offsetPosition = targetPosition + window.scrollY - navbarOffset
 
       window.scrollTo({
         top: offsetPosition,

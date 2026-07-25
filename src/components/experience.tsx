@@ -51,7 +51,7 @@ export default function Experience() {
   ]
 
   return (
-    <section className="pt-2 md:pt-3 pb-16 md:pb-20 section-gradient-experience section-blend-experience w-full scroll-mt-12 md:scroll-mt-14" id="experience">
+    <section className="pt-2 md:pt-3 pb-16 md:pb-20 section-gradient-experience section-blend-experience w-full scroll-mt-[180px] md:scroll-mt-[200px]" id="experience">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="flex flex-col mb-12">
           <h2 className="font-headline-lg text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight text-foreground mb-4">
